@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { Container, Grid } from '@mui/material';
+import { SxProps } from '@mui/system';
+import Board from './components/board/Board';
+import Stats from './components/stats/Stats';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark',
+        },
+    });
+
+    const gridStyle: SxProps = {
+        borderRadius: 3
+    };
+
+    return (
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <Container maxWidth="lg" sx={{ padding: '2em' }}>
+                <Grid container sx={gridStyle} gap={4}>
+                    <Grid item xs={12}>
+                        <Stats></Stats>
+                    </Grid>
+                    <Board xs={12}></Board>
+                </Grid>
+            </Container>
+        </ThemeProvider>
+    );
 }
 
 export default App;
