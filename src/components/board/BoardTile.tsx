@@ -5,6 +5,7 @@ import './BoardTile.css';
 export interface BoardTileProps {
     i: number;
     flipped: boolean;
+    matched: boolean;
     icon: any;
     clickHandler: any;
 }
@@ -14,8 +15,9 @@ interface BoardTileState {
 }
 class BoardTile extends React.Component<BoardTileProps, BoardTileState> {
     render() {
+        console.log(this.props.i);
         return (
-            <Card key={this.props.i}
+            <Card key={this.props.i.toString()}
                 className={`boardTile ${this.props.flipped ? 'cardBack' : 'cardFront'}`}
                 onClick={(e) => this.props.clickHandler(this.props.i, e)}
                 >
