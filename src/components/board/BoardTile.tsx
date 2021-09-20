@@ -33,7 +33,7 @@ class BoardTile extends React.Component<BoardTileProps, BoardTileState> {
                 className={`boardTile ${this.state.flipped ? 'cardBack' : 'cardFront'}`}
                 onClick={this.handleClick}
             >
-                <this.props.icon className='cardIcon'></this.props.icon>
+                {this.state.flipped && <this.props.icon className='cardIcon'></this.props.icon>}
             </Card>
         );
     }
