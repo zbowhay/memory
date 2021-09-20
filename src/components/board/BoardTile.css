@@ -1,0 +1,31 @@
+.boardTile {
+    border: 0px;
+    border-radius: 3px;
+    position: relative;
+}
+
+/* mystical css to make these items square
+ * https://spin.atomicobject.com/2015/07/14/css-responsive-square/
+*/
+.boardTile::after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.cardBack {
+    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+    box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+}
+
+.cardFront {
+    background: linear-gradient(45deg, #4287f5 30%, #f03e3e 90%);
+    box-shadow: 0 3px 5px 2px rgba(175, 62, 240, .3);
+}
+
+.cardIcon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -12px 0 0 -12px;
+}

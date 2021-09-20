@@ -1,31 +1,23 @@
-import { Grid, GridSize } from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { SxProps } from '@mui/system';
 import BoardTile from './BoardTile';
+import HomeIcon from '@mui/icons-material/Home';
+import './Board.css';
 
-
-function Board(props: { xs: GridSize }) {
-    const boardStyle: SxProps = {
-        border: 2,
-        borderRadius: 3,
-        borderColor: 'primary.dark',
-        bgcolor: grey[900],
-        justifyContent: 'space-evenly',
-        padding: 5
+function Board() {
+    const difficulty = {
+        easy: 4*4,
+        medium: 6*6,
+        hard: 8*8
     };
 
-    const boxes = Array(25).fill(0);
-    
+    const tileClicked = (i: any) => {
+        console.log('clicked', i);
+    }
 
+    const tiles = Array(difficulty.medium).fill(0).map((val, i) => <BoardTile i={i} icon={HomeIcon} flipped={false} clickHandler={tileClicked}></BoardTile>);
     return (
-        <Grid container item columns={6} gap={4} xs={props.xs || 12} sx={boardStyle} >
-            {boxes.map((val, i) => 
-                <Grid item xs={1} sx={{ borderColor: 'primary.main', border: 1 }}>
-                    <BoardTile value={i}></BoardTile>
-                </Grid>
-            )
-            }
-        </Grid>
+        <div className="boardContainer">
+            {tiles}
+        </div>
     );
 }
 
