@@ -18,7 +18,15 @@ class Board extends React.Component<{}, BoardState> {
         super(props);
         this.state = {
             difficulty: this.difficulty.easy,
-            tilePropsDict: Object.fromEntries(getIcons(this.difficulty.easy).map((icon, i) => ({ icon, i, flipped: false, matched: false, clickHandler: this.tileClicked })).map(p => [p.i, p])),
+            tilePropsDict: Object.fromEntries(getIcons(this.difficulty.easy)
+                .map((icon, i) => ({
+                    icon,
+                    i,
+                    flipped: false,
+                    matched: false,
+                    clickHandler: this.tileClicked
+                }))
+                .map(p => [p.i, p])),
             lastClicked: -1
         };
     }
@@ -84,9 +92,9 @@ class Board extends React.Component<{}, BoardState> {
         const classes = `boardContainer ${Object.entries(this.difficulty).find(val => val[1] === this.state.difficulty)?.[0]}`;
         return (
             <div className={classes}>
-                {Object.values(this.state.tilePropsDict).map(p => {
+                {Object.values(this.state.tilePropsDict).map((p, i) => {
                     return (
-                        <BoardTile {...p}></BoardTile>
+                        <BoardTile key={i} {...p}></BoardTile>
                     )
                 })}
             </div>
