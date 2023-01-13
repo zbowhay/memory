@@ -5,16 +5,19 @@ import { BoardTileProps } from './BoardTile';
 import './Board.css';
 
 
-
 interface BoardState {
     difficulty: number; // current difficulty
     tilePropsDict: { [key: string]: BoardTileProps }
     lastClicked: number;
 }
-class Board extends React.Component<{}, BoardState> {
+
+interface BoardProps {
+  incrementMoveCount: () => void;
+}
+class Board extends React.Component<BoardProps, BoardState> {
     difficulty = { easy: 4*4, medium: 6*6, hard: 8*8 };
 
-    constructor(props: {}) {
+    constructor(props: BoardProps) {
         super(props);
         this.state = {
             difficulty: this.difficulty.easy,
@@ -33,7 +36,7 @@ class Board extends React.Component<{}, BoardState> {
 
     handleWinCondition(tilePropsDict: { [key: string]: BoardTileProps }) {
         if (Object.values(tilePropsDict).every(tp => tp.matched)) {
-            console.log('hooray! you won!');
+            alert('Hooray! You won!\nRefresh to start over.');
         }
     }
 
@@ -79,6 +82,9 @@ class Board extends React.Component<{}, BoardState> {
                 // only one tile flipped, update
                 lastClicked = tileIndex;
             }
+
+            // increment move count
+            this.props.incrementMoveCount();
 
             return {
                 difficulty: prev.difficulty,

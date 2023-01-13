@@ -40,7 +40,7 @@ export class Timer extends React.Component<any, TimerState> {
 
     render() {
         return (
-            <p>{this.getFormattedTime()}</p>
+            <p>Timer: {this.getFormattedTime()}</p>
         );
     }
 }

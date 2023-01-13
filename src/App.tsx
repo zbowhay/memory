@@ -6,6 +6,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 import Board from './components/board/Board';
 import Stats from './components/stats/Stats';
+import { useState } from 'react';
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
         borderColor: 'primary.dark'
     };
 
+    const [moveCount, setMoveCount] = useState(0);
+    const incrementMoveCount = () => setMoveCount(moveCount + 1);
+
     return (
         <StyledEngineProvider injectFirst>
             {/* injectFirst ensures that MUI styles are at the top of <head>
@@ -35,10 +39,10 @@ function App() {
                 <Container maxWidth="lg" sx={{ padding: '2em' }}>
                     <Grid container sx={gridStyle} gap={4}>
                         <Grid item xs={12}>
-                            <Stats></Stats>
+                            <Stats moveCount={moveCount}></Stats>
                         </Grid>
                         <Grid item xs={12} sx={gridBoardItem}>
-                            <Board></Board>
+                            <Board incrementMoveCount={incrementMoveCount}></Board>
                         </Grid>
                     </Grid>
                 </Container>

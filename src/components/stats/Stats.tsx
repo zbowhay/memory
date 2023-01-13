@@ -2,8 +2,13 @@ import { Container } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { SxProps } from '@mui/system';
 import { Timer } from './Timer';
+import { MoveCounter } from './MoveCounter';
 
-function Stats() {
+interface GameStats {
+  moveCount: number;
+}
+
+function Stats(props: GameStats) {
     const containerStyle: SxProps = {
         display: 'flex',
         flexDirection: 'row',
@@ -17,8 +22,7 @@ function Stats() {
     return (
         <Container maxWidth="sm" sx={containerStyle}>
             <Timer></Timer>
-            <p>Move Counter</p>
-            <p>High Score</p>
+            <MoveCounter move={props.moveCount}></MoveCounter>
         </Container>
     );
 }
